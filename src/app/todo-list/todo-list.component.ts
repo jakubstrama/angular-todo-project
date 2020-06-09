@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Todo} from '../model/todo.model';
-import {TodoService} from '../service/todo.service';
 import {Store} from '@ngrx/store';
 
 import * as _ from 'lodash';
@@ -19,7 +18,7 @@ export class TodoListComponent implements OnInit {
   public todos: Array<Todo> = [];
   public filteredTodos: Array<Todo> = [];
 
-  constructor(private todoDataService: TodoService, private store: Store<any> ) {
+  constructor(private store: Store<any> ) {
   }
 
   ngOnInit(): void {
