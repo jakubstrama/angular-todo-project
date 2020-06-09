@@ -1,9 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Todo} from '../model/todo.model';
-import {TodoService} from '../service/todo.service';
-import {Store} from '@ngrx/store';
-
-import * as _ from 'lodash';
 
 @Component({
   selector: '[app-todo-list]',
@@ -19,36 +15,27 @@ export class TodoListComponent implements OnInit {
   public todos: Array<Todo> = [];
   public filteredTodos: Array<Todo> = [];
 
-  constructor(private todoDataService: TodoService, private store: Store<any> ) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.store.select('global.todos').subscribe(value => {
-        if (value) {
-          this.todos = _.cloneDeep(value);
-          this.showAllItems();
-        }
-      });
   }
 
   addTodo() {
     this.todos.push(new Todo(this.newTodo));
-    this.pushList();
     this.newTodo = new Todo();
+    this.showAllItems();
   }
 
-  private pushList(): void {
-    this.store.dispatch({type: 'PUSH_TODOS', payload: this.todos});
-  }
 
   toggleTodoComplete(todo: Todo) {
     todo.complete = true;
-    this.pushList();
+    this.showAllItems();
   }
 
   removeTodo(deletedTodo: Todo) {
     this.todos = this.todos.filter(todo => todo !== deletedTodo);
-    this.pushList();
+    this.showAllItems();
   }
 
   public showAllItems() {
