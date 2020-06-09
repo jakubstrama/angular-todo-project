@@ -1,0 +1,22 @@
+<div class="todo-list-app">
+  <h2>{{ title }}</h2>
+  <div class="todo-form">
+    <input class="new-todo" placeholder="Enter new todo" autofocus="" [(ngModel)]="newTodo.title"
+           (keyup.enter)="addTodo()">
+  </div>
+  <section >
+    <div class="todo-list">
+      <ul>
+        <li *ngFor="let todo of filteredTodos" [class.completed]="todo.complete">
+          <app-todo [todo]="todo" (delete)="removeTodo($event)" (complete)="toggleTodoComplete($event)" ></app-todo>
+        </li>
+      </ul>
+      <div class="list-buttons">
+        <button (click)="showAllItems()">All</button>
+        <button (click)="showActiveItems()">Active</button>
+        <button (click)="showCompletedItems()">Completed</button>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,36 +1,4 @@
 <div id="root">
-  <div class="todo-list-app">
-    <div class="todo-form">
-      <input class="new-todo" placeholder="Enter new todo" autofocus="" [(ngModel)]="newTodo.title"
-        (keyup.enter)="addTodo()">
-    </div>
-    <section >
-      <div class="todo-list">
-        <ul>
-          <li *ngFor="let todo of todos" [class.completed]="todo.complete">
-            <div class="todo-item">
-              <div (click)="toggleTodoComplete(todo)">
-                <span *ngIf="todo.complete" class="todo-item-checked">&#x2714;</span>
-                <span *ngIf="!todo.complete" class="todo-item-unchecked"></span>
-              </div>
-              <div class="todo-item-input-wrapper">
-                <input type="text" [value]="todo.title">
-              </div>
-
-              <div class="item-remove" (click)="removeTodo(todo)">
-                &#x02A2F;
-              </div>
-
-            </div>
-          </li>
-        </ul>
-        <div class="list-buttons">
-          <button (click)="showAllItems()">All</button>
-          <button (click)="showActiveItems()">Active</button>
-          <button (click)="showCompletedItems()">Completed</button>
-        </div>
-      </div>
-    </section>
-
-  </div>
+  <div app-todo-list [title]="'Todo list 1'" class="todo-list-app"></div>
+  <div app-todo-list [title]="'Todo list 2'" class="todo-list-app"></div>
 </div>
