@@ -4,7 +4,7 @@
     <span *ngIf="!todo.complete" class="todo-item-unchecked"></span>
   </div>
   <div class="todo-item-input-wrapper">
-    <input type="text" [value]="todo.title">
+    <input type="text" [(ngModel)]="title" (blur)="editTodo()" >
   </div>
 
   <div class="item-remove" (click)="deleteTodo()">

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Todo} from '../model/todo.model';
 import {Store} from '@ngrx/store';
 
+import {TodoEdit} from '../todo/todo.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -47,6 +48,12 @@ export class TodoListComponent implements OnInit {
 
   removeTodo(deletedTodo: Todo) {
     this.todos = this.todos.filter(todo => todo !== deletedTodo);
+    this.pushList();
+  }
+
+  editTodo(editedTodo: TodoEdit) {
+    const match = this.todos.filter(t => t === editedTodo.todo)[0];
+    match.title = editedTodo.title;
     this.pushList();
   }
 
